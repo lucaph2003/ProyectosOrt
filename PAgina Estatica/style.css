@@ -1,0 +1,15 @@
+*{
+    font-family: "Roboto", sans-serif;
+}
+
+.btn_Altas{
+    width: 100%;
+}
+
+a{
+    cursor: pointer;
+}
+
+.contenedor{
+    border-radius: 5px;
+}
