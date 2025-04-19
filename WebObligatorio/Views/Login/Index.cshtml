@@ -1,0 +1,30 @@
+﻿@*
+    
+*@
+@{
+    ViewData["Title"] = "Login";
+}
+<h3>Inicio de Sesion</h3>
+
+<form action="/Login/Index" method="post">
+
+    <div class="form-outline mb-4">
+        <label class="form-label" for="email">Email: </label>
+        <input type="text" class="form-control" id="email" name="email" required />
+    </div>
+
+    <div class="form-outline mb-4">
+        <label class="form-label" for="contrasena">Contraseña: </label>
+        <input type="password" class="form-control" id="contrasena" name="contrasena" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-block mb-4">Iniciar Sesion</button>
+
+    @if (ViewBag.NombreError != null)
+    {
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.NombreError
+    </div>
+    }
+
+</form>

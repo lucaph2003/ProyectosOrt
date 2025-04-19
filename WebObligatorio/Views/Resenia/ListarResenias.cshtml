@@ -1,0 +1,33 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Ver Resenia";
+}
+@using Dominio;
+@model List<Resenia>
+<h1>Mis Reseñas</h1>
+
+
+@{
+    foreach (Resenia r in Model)
+    {
+    <div class="alert alert-primary" role="alert">
+        <p><strong>Titulo:</strong> @r.titulo</p>
+        <p><strong>Fecha:</strong> @r.fecha</p>
+        @if (r.Partido.ObtenerTipo() == "FaseGrupo")
+        {   
+            <p><strong>Grupo:</strong> @r.Partido.ObtenerEtapa()</p>
+        }
+        <p><strong>Partido:</strong> @r.Partido.seleccion1.pais.nombre VS @r.Partido.seleccion2.pais.nombre</p>
+        <p><strong>Contenido:</strong> @r.contenido</p>
+    </div>
+    }
+}
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.Error
+    </div>
+}

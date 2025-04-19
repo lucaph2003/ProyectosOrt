@@ -1,0 +1,35 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Incidencias";
+}
+@using Dominio;
+@model List<Incidencia>
+
+<h1>Listado de Incidencias</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Incidencia</th>
+            <th scope="col">Minuto</th>
+            <th scope="col">Jugador</th>
+            <th scope="col">Seleccion</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (Incidencia incidencia in Model)
+            {
+                <tr>
+                    <th scope="row">i</th>
+                    <td>@incidencia.incidencia</td>
+                    <td>@incidencia.minuto'</td>
+                    <td>@incidencia.jugador.nombreCompleto</td>
+                    <td>@incidencia.jugador.pais.nombre</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

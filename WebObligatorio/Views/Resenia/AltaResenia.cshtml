@@ -1,0 +1,42 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Resenia";
+}
+@using Dominio;
+
+<h3>Alta de Resenia</h3>
+
+<form action="/Resenia/AltaResenia" method="post">
+
+    <div class="form-outline mb-4">
+        <label class="form-label" for="fecha">Ingrese Fecha</label>
+        <input type="date" class="form-control" id="fecha" name="fecha" required />
+    </div>
+
+    <input type="hidden" name="idPartido" value="@ViewBag.idPartido" />
+
+    <div class="form-outline mb-4">
+        <label class="form-label" for="titulo">Titulo de la Reseña</label>
+        <input type="text" class="form-control" id="titulo" name="titulo" required />
+    </div>
+
+    <div class="form-outline mb-4">
+        <label class="form-label" for="contenido">Escriba su reseña</label>
+        <textarea class="form-control" id="contenido" name="contenido" required></textarea>
+    </div>
+
+    <div class="form-outline mb-4">
+        <button type="submit" class="btn btn-primary btn-block mb-4">Ingresar Reseña</button>
+    </div>
+
+
+    @if (ViewBag.NombreError != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @ViewBag.NombreError
+        </div>
+    }
+
+</form>

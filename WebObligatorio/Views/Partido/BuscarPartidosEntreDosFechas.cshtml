@@ -1,0 +1,54 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Buscador";
+}
+@using Dominio
+@model List<Partido>
+
+<h1>Obtener Partido Entre 2 Fechas</h1>
+
+<form action="/Partido/BuscarPartidosEntreDosFechas" method="post">
+    <div class="form-outline mb-4">
+        <label class="form-label" for="f1">Fecha 1</label>
+        <input class="form-control" type="date" id="f1" name="f1" />
+    </div>
+    <div class="form-outline mb-4">
+        <label class="form-label" for="f2">Fecha 2</label>
+        <input class="form-control" type="date" id="f2" name="f2" />
+    </div>
+    <div class="form-outline mb-4">
+        <button class="btn btn-primary btn-block mb-4" type="submit">Buscar Partidos</button>
+    </div>
+</form>
+
+
+<h2>Resultados de la busqueda</h2>
+
+@{ if (Model != null)
+    {
+        foreach (Partido p in Model)
+        {
+            if (p.esFinalizada)
+            {
+                <div class="alert alert-primary" role="alert">
+                    <p><strong>Fase:</strong> @p.ObtenerTipo()</p>
+                    <p><strong>Fecha/Hora:</strong> @p.fechaHora</p>
+                    <p><strong>Selección:</strong> @p.seleccion1.pais.nombre | <strong>Goles:</strong> @p.resultado1 | <strong>Amarillas:</strong> @p.ObtenerAmonestacionesSeleccion(p.seleccion1) | <strong>Rojas:</strong>  @p.ObtenerExpulsionesSeleccion(p.seleccion1)</p>
+                    <p><strong>Selección:</strong> @p.seleccion2.pais.nombre | <strong>Goles:</strong> @p.resultado2 | <strong>Amarillas:</strong> @p.ObtenerAmonestacionesSeleccion(p.seleccion2) | <strong>Rojas:</strong>  @p.ObtenerExpulsionesSeleccion(p.seleccion2)</p>
+                    <p><strong>Resultado del partido:</strong> @p.resultadoFinal</p>
+                </div>
+
+            }
+
+        }
+    }
+}
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.Error
+    </div>
+}

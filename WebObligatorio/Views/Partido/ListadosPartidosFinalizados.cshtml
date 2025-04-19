@@ -1,0 +1,41 @@
+﻿@using Microsoft.AspNetCore.Http;
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Finalizados";
+}
+@using Dominio;
+@model List<Partido>
+
+@{
+    foreach (Partido p in Model)
+    {
+        <div class="alert alert-primary" role="alert">
+            <p><strong>Fase:</strong> @p.ObtenerTipo()</p>
+            <p><strong>Fecha:</strong> @p.fechaHora</p>
+            <p><strong>Selección:</strong> @p.seleccion1.pais.nombre | <strong>Goles:</strong> @p.resultado1 | <strong>Amarillas:</strong> @p.ObtenerAmonestacionesSeleccion(p.seleccion1) | <strong>Rojas:</strong>  @p.ObtenerExpulsionesSeleccion(p.seleccion1)</p>
+            <p><strong>Selección:</strong> @p.seleccion2.pais.nombre | <strong>Goles:</strong> @p.resultado2 | <strong>Amarillas:</strong> @p.ObtenerAmonestacionesSeleccion(p.seleccion2) | <strong>Rojas:</strong>  @p.ObtenerExpulsionesSeleccion(p.seleccion2)</p>
+            <p><strong>Resultado del partido:</strong> @p.resultadoFinal</p>
+            @if (p.ObtenerTipo() == "FaseEliminatoria")
+            {
+                <p><strong>Etapa:</strong> @p.ObtenerEtapa()</p>
+                <button type="button" class="btn btn-outline-primary">@Html.ActionLink("Ver Detalles", "Incidencias", "Incidencia", new { idPartido = p.id })</button>
+            }
+
+
+            @if (Context.Session.GetString("UsuarioRol") == "Periodista")
+            {
+                <button type="button" class="btn btn-outline-primary">@Html.ActionLink("Registrar Reseña", "AltaResenia", "Resenia", new { idPartido = p.id })</button>
+            }
+        </div>
+    }
+
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @ViewBag.Error
+        </div>
+    }
+}
+

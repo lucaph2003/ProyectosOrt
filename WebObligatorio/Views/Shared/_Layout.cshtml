@@ -1,0 +1,207 @@
+﻿@using Microsoft.AspNetCore.Http
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Mundial Qatar 2022</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <style>
+        .Mynav_navbar {
+            overflow: hidden;
+        }
+
+            .Mynav_navbar a {
+                float: left;
+                font-size: 16px;
+                color: black;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+            }
+
+        .Mynav_dropdown {
+            float: left;
+            overflow: hidden;
+        }
+
+            .Mynav_dropdown .Mynav_dropbtn {
+                font-size: 16px;
+                border: none;
+                outline: none;
+                color: black;
+                padding: 14px 16px;
+                background-color: inherit;
+                font-family: inherit;
+                margin: 0;
+            }
+
+        .Mynav_dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            .Mynav_dropdown-content a {
+                float: none;
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                text-align: left;
+            }
+
+                .Mynav_dropdown-content a:hover {
+                    background-color: #ddd;
+                }
+
+        .Mynav_dropdown:hover .Mynav_dropdown-content {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Mundial Qatar 2022</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <div class="Mynav_navbar">
+                        <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+
+                        @if (Context.Session.GetString("UsuarioLogueadoEmail") != null)
+                        {
+                            @if (Context.Session.GetString("UsuarioRol") == "Periodista")
+                            {
+                                <div class="Mynav_dropdown">
+                                    <button class="Mynav_dropbtn">
+                                        Selecciones
+                                    </button>
+                                    <div class="Mynav_dropdown-content">
+                                        <a asp-area="" asp-controller="Seleccion" asp-action="index">Ver Selecciones</a>
+                                    </div>
+                                </div>
+                                <div class="Mynav_dropdown">
+                                    <button class="Mynav_dropbtn">
+                                        Partidos
+                                    </button>
+                                    <div class="Mynav_dropdown-content">
+                                        <a asp-area="" asp-controller="Partido" asp-action="ListadosPartidosFinalizados">Listar Finalizados</a>
+                                    </div>
+                                </div>
+                                <div class="Mynav_dropdown">
+                                    <button class="Mynav_dropbtn">
+                                        Reseñas
+                                    </button>
+                                    <div class="Mynav_dropdown-content">
+                                        <a asp-area="" asp-controller="Resenia" asp-action="ListarResenias">Listar Reseñas</a>
+                                        <a asp-area="" asp-controller="Partido" asp-action="ListadosPartidosFinalizados">Crear Reseñas</a>
+                                    </div>
+                                </div>
+                            }
+                            @if (Context.Session.GetString("UsuarioRol") == "Operador")
+                            {
+                                <div class="Mynav_dropdown">
+                                    <button class="Mynav_dropbtn">
+                                        Selecciones
+                                    </button>
+                                    <div class="Mynav_dropdown-content">
+                                        <a asp-area="" asp-controller="Seleccion" asp-action="index">Ver Selecciones</a>
+                                        
+                                    </div>
+                                </div>
+                                <div class="Mynav_dropdown">
+                                    <button class="Mynav_dropbtn">
+                                        Partidos
+                                    </button>
+                                    <div class="Mynav_dropdown-content">
+                                        <a asp-area="" asp-controller="Partido" asp-action="ListadoPartido">Listar Partidos</a>
+                                        <a asp-area="" asp-controller="Partido" asp-action="ListadosPartidosFinalizados">Listar Finalizados</a>
+                                        <a asp-area="" asp-controller="Partido" asp-action="BuscarPartidosEntreDosFechas">Buscar Partidos</a>
+                                    </div>
+                                </div>
+                                <div class="Mynav_dropdown">
+                                    <button class="Mynav_dropbtn">
+                                        Estadisticas
+                                    </button>
+                                    <div class="Mynav_dropdown-content">
+                                        <a asp-area="" asp-controller="Seleccion" asp-action="Goleadores">Ver Goleadores</a>
+                                        <a asp-area="" asp-controller="Partido" asp-action="BuscarPartidoEmailPeriodista">Buscar Reseñas</a>
+                                    </div>
+                                </div>
+                                <div class="Mynav_dropdown">
+                                    <button class="Mynav_dropbtn">
+                                        Periodistas
+                                    </button>
+                                    <div class="Mynav_dropdown-content">
+                                        <a asp-area="" asp-controller="Periodista" asp-action="ListarPeriodistas">Listar Periodistas</a>
+                                    </div>
+                                </div>
+                            }
+                        }
+                        @if (Context.Session.GetString("UsuarioRol") == null)
+                        {
+                            <div class="Mynav_dropdown">
+                                <button class="Mynav_dropbtn">
+                                    Selecciones
+                                </button>
+                                <div class="Mynav_dropdown-content">
+                                    <a asp-area="" asp-controller="Seleccion" asp-action="index">Ver Selecciones</a>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1">
+                        @if (Context.Session.GetString("UsuarioLogueadoEmail") != null)
+                        {
+                            <li class="nav-item">
+                                <p>Bienvenido, @Context.Session.GetString("UsuarioLogueadoNombre")</p>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Salir">Salir</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Index">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Registro" asp-action="Index">Registro</a>
+                            </li>
+
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2022 - Mundial QATAR - Obligatorio ORT Programacion 2
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

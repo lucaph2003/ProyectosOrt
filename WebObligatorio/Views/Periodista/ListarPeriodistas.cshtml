@@ -1,0 +1,31 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Periodistas";
+}
+@using Dominio;
+@model List<Periodista>
+
+<h1>Lista Periodistas</h1>
+
+@{
+    foreach (Periodista p in Model)
+    {
+        <div class="alert alert-primary" role="alert">
+            <p><strong>Id:</strong> @p.id</p>
+            <p><strong>Nombre:</strong> @p.nombre</p>
+            <p><strong>Apelido:</strong> @p.apellido</p>
+            <p><strong>Correo Electronico:</strong> @p.email</p>
+            <button type="button" class="btn btn-outline-primary">@Html.ActionLink("Ver Reseñas", "ListarResenias", "Resenia", new { email = p.email })</button>
+        </div>
+    }
+}
+
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.Error
+    </div>
+}
