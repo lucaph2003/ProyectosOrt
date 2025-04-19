@@ -1,14 +1,19 @@
-Proyectos finales de la ORT
+# 📚 Proyectos Finales - Universidad ORT
 
-Cada Branch es un proyecto
+Este repositorio contiene **todos los proyectos finales** que realicé durante mi cursada en la Universidad ORT.  
+Cada rama (`branch`) representa un proyecto distinto.
 
-Esta rama principal estara vacia.
+> ⚠️ La rama principal (`main`) está vacía intencionalmente.
 
-INSTRUCCIONES PARA BAJAR PROYECTOS
-1-Crea una carpeta en tu disco local\n
-2-Abre la consola de git
-3-Ejecuta: git clone https://github.com/lucaph2003/ProyectosOrt.git
-4-git checkout -r *nombre de la branch deseada
-LISTO
+---
 
+## 🛠️ ¿Cómo clonar y acceder a un proyecto?
+
+Seguí estos pasos para descargar y trabajar con cualquiera de los proyectos:
+
+1. 📁 Creá una carpeta en tu computadora donde quieras guardar los proyectos.
+2. 🖥️ Abrí la terminal o consola de Git.
+3. ⬇️ Cloná el repositorio:
+   ```bash
+   git clone https://github.com/lucaph2003/ProyectosOrt.git
 
