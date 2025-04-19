@@ -1,0 +1,111 @@
+html {
+    background-color: beige;
+
+}
+
+body {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+h1 {
+    cursor: pointer;
+}
+
+ul li {
+    list-style:none;
+    display: inline;
+    margin-right: 2.5%;
+}
+
+a {
+    text-decoration: none;
+    font-size: large;
+    cursor: pointer;
+}
+
+input,
+select, textarea {
+  background-color: #303036;
+  color: #FFFAFF;
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  font-family: 'Roboto Flex', sans-serif;
+  min-width: 200px;
+  border-radius: 5px;
+  font-size:14px;
+}
+
+input:disabled {
+    background: blue;
+}
+
+input[type="button"] {
+  background-color: #303036;
+  font-size: large;
+  color: #fff;
+  cursor: pointer;
+}
+
+img {
+    width: 200px;
+    height: 200px; 
+}    
+
+table, td , th{
+    border: 1px solid black;
+}
+
+.spanYA {
+    color: red;
+}
+
+.imgTablas {
+    width: 70px;
+    height: 70px; 
+}
+
+.elementsTablas {
+    min-width:50px;
+    
+}
+
+#img_ubicacion_local {
+    width: 500px;
+    height: 250px;
+}
+
+#container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center ;
+}
+  
+#tab1 {
+    padding: 5px;
+    width: 320px;
+    margin: 10px;
+}
+   
+#tab2 {
+    padding: 5px;
+    width: 325px;
+    margin: 10px;                                                       
+}
+  
+#tab3 {
+    padding: 5px;
+    width: 335px;
+    margin: 10px;
+}
+
+#tab4 {
+    padding: 5px;
+    width: 325px;
+    margin: 10px;                                                       
+}
+  
+#tab5 {
+    padding: 5px;
+    width: 335px;
+    margin: 10px;
+}

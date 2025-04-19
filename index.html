@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Reserva YA! La pagina web para reservar cupos en restaurantes,teatros y museos">
+    <meta name="author" content="Agustin Padia , Luca Podesta">
+    <script type="text/javascript" src="js/display.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/clases.js"></script>
+    <link rel="stylesheet" href="styles/style.css">
+    <title>Reservas YA!</title>
+</head>
+<body>
+
+    <div id="SeccionCabecera">
+        <h1 align="center" id="tituloInicial" title="Volver al menu">RESERVAS <span class="spanYA">YA</span></h1>
+        <hr>
+        
+        <!--Menu de navegacion-->
+        <nav id="menu_nav" align="center">
+            <ul id="Menu_nav_Inicial">
+                <li><a id="link_nav_Local"></a></li>
+                <li><a id="link_nav_Usuario"></a></li>
+            </ul>
+        </nav>
+        <hr>
+    </div>
+
+    <!--Inicio-->
+    <div id="inicial" align="center">
+        <h2>BIENVENIDO A RESERVAS <span class="spanYA">YA</span>!</h2>
+        <input type="button" value="Iniciar Sesion como LOCAL" id="btnInicioLocal">
+        <input type="button" value="Iniciar Sesion como CLIENTE" id="btnInicioUsuario">
+        <input type="button" value="Registrarse como CLIENTE" id="btnRegistroCliente">
+    </div>
+
+    <!--Logins y registros-->
+    <div id="local_login" align="center">
+        <fieldset>
+            <h3>Inicio de sesion</h3>
+            <input type="text" placeholder="Nombre de Usuario" id="txtUserLocal">
+            <br><br>
+            <input type="password" placeholder="Contraseña" id="txtPasswordLocal">
+            <br><br>
+            <input type="button" value="Iniciar Sesion" id="btnIniciarSesionLocal">
+            <br><br>
+            <p id="error_login_Local"></p>
+        </fieldset>
+    </div>
+    
+    <div id="usuario_login" align="center" >
+        <fieldset>
+            <h3>Inicio de sesion</h3>
+            <input type="text" placeholder="Nombre de Usuario" id="txtUserUsuario">
+            <br><br>
+            <input type="password" placeholder="Contraseña" id="txtPasswordUsuario">
+            <br><br>
+            <input type="button" value="Iniciar Sesion" id="btnIniciarSesionUsuario">
+            <br><br>
+            <p id="error_login_usuario"></p>
+            <br><br>
+            <a href="#" id="enlaceRegistro">No estas registrado? Registrese aqui!</a>
+        </fieldset>
+    </div>
+
+    <div id="usuario_register" align="center" >
+    <fieldset>
+        <h3>Registro de usuario</h3>
+        <input type="text" placeholder="Nombre y apellido" id="txtFirstName">
+        <br><br>
+        <input type="text" placeholder="Nombre de usuario" id="txtUsername">
+        <br><br>
+        <input type="password" placeholder="Contraseña" id="txtPasswordRegistro">
+        <br><br>
+        <input type="password" placeholder="Confirmar contraseña" id="txtConfirmPassword">
+        <br><br>
+        <input type="button" value="Registrarse" id="btnRegistroSesion">
+        <br><br>
+        <p id="error_register_usuario"></p>
+        <br><br>
+        <a href="#" id="enlaceLogin">Ya estas registrado? Inicie sesion aqui!</a>
+    </fieldset>
+    </div>
+
+    <!--Local-->
+
+    <!--Menu de navegacion-->
+    <nav id="menu_nav__Local" align="center">
+        <input type="button" value="Volver" id="btnVolverLocal" width="40px" height="40px">
+        <input type="button" value="Disponibilidad" id="btnLocalDisponibilidad">
+        <input type="button" value="Administrar reservas" id="btnLocalAdministrarReservas"><br><br>
+        <input type="button" value="Estado de las Reservas" id="btnLocalEstadoReservas">
+        <input type="button" value="Estadisticas" id="btnLocalEstadisticas"><br><br>
+    </nav>
+
+
+    <div id="local_disponibilidad" align="center">
+        <fieldset>
+            <h3>Disponibilidad</h3>
+            <input type="radio" name="disponibilidad" id="radioHabilitado">
+            <label for="radioHabilitado">Habilitado</label><br><br>
+            <input type="radio" name="disponibilidad" id="radioDeshabilitado">
+            <label for="radioDeshabilitado">Deshabilitado</label>
+            <br><br>
+            <input type="button" value="Actualizar estado" id="btnAcutalizarEstado">
+            <br><br>
+            <p id="ActualizacionHabilitado"></p>
+        </fieldset>
+    </div>
+    <div id="local_estado_reservas" align="center">
+        <fieldset>
+            <h3>Estado de reservas</h3>
+            <strong>Cupos Totales: </strong><span id="cupos_totales"></span>
+            <br><br>
+            <input type="number" id="agrearCuposTotales" placeholder="Agrega cupos totales">
+            <input type="button" value="Agregar" id="btnAgregarCupos">
+            <input type="button" value="Restar Cupos" id="btnRestarCupos">
+            <br><br>
+            <table  align="center">
+                <tr>
+                    <th >Cupos Disponibles</th>
+                </tr>
+                <tr>
+                    <td id="mostrarCuposDisponibles"  align="center"></td>
+                </tr>
+            </table>
+        </fieldset>
+    </div>
+
+    <div id="local_administrar_reservas" align="center">
+        <fieldset>
+            <h3>Administrar Reservas</h3>
+            <p><strong>Reserva</strong></p>
+            <label for="txtNombre_Bucador">Ingrese Nombre del cliente: </label>
+            <input type="text" id="txtNombre_Buscador">
+            <input type="button" value="Buscar" id="btn_Buscador">
+
+            <br><br>
+            <table >
+                <thead>
+                    <tr >
+                        <th >Nombre del cliente</th>
+                        <th >Cupos Reservados</th>
+                        <th >Finalizar Reserva</th>
+                    </tr>
+                </thead>
+                <tbody id="userReserva"></tbody>
+            </table>
+            <br><br>
+            <p id="errorBuscador"></p>
+
+        </fieldset>
+    </div>
+
+    <div id="local_estadisticas" align="center">
+        <fieldset>
+        <h3>Estadisticas</h3>
+        <strong>Porcentaje de ocupacion del local: </strong><span id="Porcentaje_ocupacion"></span><br><br>
+        <strong>Reservas Pendientes total: </strong><span id="Reservas_totales_pendientes"></span><br><br>
+        <strong>Reservas Finalizadas total: </strong><span id="Reservas_totales_finalizadas"></span><br><br>
+        <strong>Reservas Canceladas total: </strong><span id="Reservas_totales_canceladas"></span><br><br>
+        <strong>Calificacion total: </strong><span id="Calificacion_Local"></span><br><br>
+        <strong>Ranking</strong><br><br>
+        <table table >
+            <thead>
+                <tr>
+                    <th >Locales</th>
+                    <th >Calificaciones</th>
+                </tr>
+            </thead>
+            <tbody id="Ranking_Locales">
+
+            </tbody>    
+        </table>  
+    </fieldset>
+    </div>
+
+    <!--Usuario-->
+    <!--Menu de navegacion-->
+    <nav id="menu_nav__Usuario" align="center">
+        <input type="button" value="Volver" id="btnVolverUsuario">
+        <input type="button" value="Reservar" id="btnUsuarioEleccionLocal">
+        <input type="button" value="Mis Reservas" id="btnUsuarioReserva"> 
+        <input type="button" value="Estadisticas" id="btnUsuarioEstadistica"> 
+    </nav>
+    <div id="usuario_eleccion_local" align="center">
+        <fieldset>
+            <h3>Opciones de reserva</h3>
+            <input type="button" value="Restaurantes" id="btnRestaurantes">
+            <input type="button" value="Museos" id="btnMuseos">
+            <input type="button" value="Teatros" id="btnTeatros">
+        </fieldset>
+    </div>
+    
+    <div id="usuario_eleccion_restaurantes" align="center">
+        <fieldset>
+            <h3>Restaurantes Disponibles</h3>
+            <input type="button" value="MC DONALD" id="btnMcdonal">
+            <input type="button" value="La Pasiva" id="btnLapasiva">
+            <input type="button" value="SubWay" id="btnSubway">
+        </fieldset>
+    </div>
+    
+    <div id="usuario_eleccion_museo" align="center">
+        <fieldset>
+            <h3>Museos Disponibles</h3>
+            <input type="button" value="Museo Nacional de Artes Visuales" id="btnMuseoArtesVisuales">
+            <input type="button" value="Museo Nacional de Historia Natural" id="btnMuseoHistoriaNatural">
+        </fieldset>
+    </div>
+    
+    <div id="usuario_eleccion_teatro" align="center">
+        <fieldset>
+            <h3>Teatros Disponibles</h3>
+            <input type="button" value="Teatro Solis" id="btnTeatroSolis">
+            <input type="button" value="Teatro Life Cinemas" id="btnTeatroLife">
+        </fieldset>
+    </div>
+
+    <div id="usuario_reserva" align="center">
+        <fieldset>
+        <h3>Mis Reservas</h3>
+        <div id="container">
+            <table id="tab1">
+                <thead>
+                    <th colspan="2">Reservas Canceladas</th>
+                    <tr>
+                        <th>Logo</th>
+                        <th>Nombre</th>
+                    </tr>
+                </thead>
+                <tbody id="tab1_Body"></tbody>
+            </table>
+    
+            <table id="tab2">
+                <thead>
+                    <th colspan="4">Reservas Pendientes</th>
+                    <tr>
+                        <th>Logo</th>
+                        <th>Local</th>  
+                        <th>Cupos</th>
+                        <th>Cancelar Reserva</th>  
+                    </tr>
+                </thead>
+                <tbody id="tab2_Body"></tbody>
+            </table>
+    
+            <table id="tab3">
+                <thead>
+                    <th colspan="3">Reservas finalizadas</th>
+                
+                    <tr>
+                        <th>Logo</th>
+                        <th>Local</th>
+                        <th colspan="2">Calificar Reserva</th> 
+                    </tr>
+                </thead>
+                <tbody id="tab3_Body"></tbody>
+            </table>
+        </div>
+        
+        </fieldset>
+    </div>
+    
+    <div id="usuario_estadistica" align="center">
+        <fieldset>
+            <h3>Mis Estadisticas</h3>
+            <div id="container">
+                <table id="tab4">
+                    <thead>
+                        <th colspan="2" >Locales Favoritos</th>
+                        <tr>
+                            <th >Nombre Local</th>
+                            <th >Porcentaje de Reserva</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tab4_Body"></tbody>
+                </table>
+                
+                <table id="tab5">
+                    <thead>
+                        <th colspan="2">Reservas Totales en cada local</th>
+                        <tr>
+                            <th>Local</th>  
+                            <th>Cantidad de Reservas</th>  
+                        </tr>
+                    </thead>
+                    <tbody id="tab5_Body"></tbody>
+                </table>
+            </div>
+        </fieldset>
+    </div>
+
+    <!--Div reservar local -->
+    <div id="local" align="center">
+        <fieldset>
+            <img src="" alt="Logo" id="imgLogo">
+            <br>
+            <h3 id="titulo_local_seleccionado"></h3>
+            <br>
+            <p id="informacion_local"></p>
+            <img src="" alt="Ubicacion Local" id="img_ubicacion_local">
+            <br>
+            <p id="direccion_local"></p>
+            <div id="reserva">
+                <fieldset>
+                    <strong>Cantidad de cupos disponibles: <span id="cupos_disponibles_reserva"></span></strong>
+                    <br><br>
+                    <select id="cantidad_Cupos_Reservar"></select>
+                    <br><br>
+                    <input type="button" value="Confirmar Reserva" id="btnReservar">
+                </fieldset>
+            </div>
+        </fieldset>
+    </div>
+
+</body>
+</html>
