@@ -1,0 +1,86 @@
+﻿@model IEnumerable<PresentacionMVC.Models.MantenimientoModel>
+@{
+    ViewData["Title"] = "ListarTodos";
+}
+
+<h1>Buscar Entre Dos Fechas</h1>
+
+<p>
+    <a asp-action="Create">Crear Nuevo</a>
+</p>
+
+<form>
+    <input type="hidden" name="id" value="Viewbag.CabaniaID"/>
+    <div class="form-outline mb-4">
+        <label class="form-label" id="fechaInicio">Fecha 1</label>
+        <input class="form-control" id="fechaInicio" name="fechaInicio" type="Date" />
+    </div>
+    <div class="form-outline mb-4">
+        <label class="form-label" id="fechaFinal">Fecha 2</label>
+        <input class="form-control" id="fechaFinal" type="Date" name="fechaFinal" />
+    </div>
+    <div class="form-outline mb-4">
+        <button class="btn btn-primary btn-block mb-4" type="submit">Buscar Mantenimientos</button>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SingleOrDefault().Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SingleOrDefault().FechaMantenimiento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SingleOrDefault().Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SingleOrDefault().CostoMantenimiento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SingleOrDefault().Nombre)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if(Model != null)
+        {
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaMantenimiento)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descripcion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CostoMantenimiento)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                </tr>
+            }
+        }
+       
+    </tbody>
+</table>
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.Error
+    </div>
+}
+@if (ViewBag.Vacio != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.Vacio
+    </div>
+}

@@ -1,0 +1,93 @@
+﻿
+@model PresentacionMVC.Models.AltaCabaniaModel
+
+@{
+    ViewData["Title"] = "Alta Cabania";
+}
+
+<h1>Alta Cabania</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Cabania.Nombre" class="control-label"></label>
+                <input asp-for="Cabania.Nombre" class="form-control" />
+                <span asp-validation-for="Cabania.Nombre" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="Cabania.Descripcion" class="control-label"></label>
+                <input asp-for="Cabania.Descripcion" class="form-control" />
+                <span asp-validation-for="Cabania.Descripcion" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="Cabania.TipoId" class="control-label">Tipo</label>
+                <select asp-for="Cabania.TipoId" class="form-control">
+                    <option value="">Seleccione un tipo...</option>
+                    @if(Model.Tipos != null)
+                    {
+                        foreach (var tipo in Model.Tipos)
+                        {
+                            <option value="@tipo.Id">@tipo.Nombre</option>
+                        }
+                    }
+                </select>
+                <span asp-validation-for="Cabania.TipoId" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <label asp-for="Cabania.Jacuzzi" class="control-label">Posee Jacuzzi</label>
+                    <input asp-for="Cabania.Jacuzzi" class="form-check-input" />
+                </label>
+            </div>
+            <br />
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <label asp-for="Cabania.HabilitadaReservas" class="control-label"> Habilitadas para Reservas</label>
+                    <input class="form-check-input" asp-for="Cabania.HabilitadaReservas" />
+                </label>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="Cabania.NumHabitacion" class="control-label">Numero de Habitaciones</label>
+                <input asp-for="Cabania.NumHabitacion" class="form-control" />
+                <span asp-validation-for="Cabania.NumHabitacion" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="Cabania.CantidadMaxPersonas" class="control-label">Cantidad Maxima de personas</label>
+                <input asp-for="Cabania.CantidadMaxPersonas" class="form-control" />
+                <span asp-validation-for="Cabania.CantidadMaxPersonas" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                @*2. Control input de tipo file con el binding al IFormFile en controller*@
+                <label asp-for="Foto" class="control-label"></label>
+                <input asp-for="Foto" class="form-control" />
+                <span asp-validation-for="Foto" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Crear" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<br />
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.Error
+    </div>
+}
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,23 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<h1>Seleccione la opcion para buscar</h1>
+
+@Html.ActionLink("Buscar Por Nombre","BuscarPorNombre")
+<br />
+@Html.ActionLink("Buscar Por Tipo","BuscarPorTipo")
+<br />
+@Html.ActionLink("Buscar Por Cantidad Maxima de Personas","BuscarPorCantPersonas")
+<br />
+@Html.ActionLink("Buscar Por Habilitadas","BuscarPorHabilitadas")
+<br />
+@Html.ActionLink("Listar Todas","ListarTodas")
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.Error
+    </div>
+}

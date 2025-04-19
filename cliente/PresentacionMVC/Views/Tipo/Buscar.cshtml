@@ -1,0 +1,61 @@
+﻿
+@model PresentacionMVC.Models.TipoModel;
+
+@{
+    ViewData["Title"] = "Buscar";
+}
+
+<h1>Buscar Por Nombre</h1>
+<hr />
+<div>
+   <form method="get">
+        <input type="text" name="nombre" placeholder="Ingrese nombre" />
+        <input type="submit" value="Buscar" class="btn btn-primary" />
+   </form>
+   
+    @if(Model != null)
+    {
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Id)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Id)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Nombre)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Nombre)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Descripcion)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.CostoPorHuesped)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.CostoPorHuesped)
+            </dd>
+        </dl>
+
+    }
+
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @ViewBag.Error
+        </div>
+    }
+
+</div>
+<div>
+    @if(Model != null)
+    {
+        @Html.ActionLink("Editar", "Edit", new {  Nombre = @Model.Nombre  })
+    }
+    <a asp-action="Index">Volver a la lista</a>
+</div>

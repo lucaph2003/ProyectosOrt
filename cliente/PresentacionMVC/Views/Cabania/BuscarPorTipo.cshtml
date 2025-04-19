@@ -1,0 +1,109 @@
+﻿@model IEnumerable<PresentacionMVC.Models.CabaniaModel>
+@{
+    ViewData["Title"] = "BuscarPorTipo";
+}
+
+<h1>Buscar Por Tipo</h1>
+
+<p>
+    <a asp-action="Create">Crear Nueva</a>
+</p>
+
+<form method="get">
+    <div class="form-group">
+        <label class="control-label">Seleccione una opcion... </label>
+        <select id="tipoId" class="form-control" name="tipoId">
+            <option value="">Seleccione un tipo...</option>
+            
+            @foreach (var tipo in ViewBag.Tipos)
+            {
+                <option value="@tipo.Id">@tipo.Nombre</option>
+            }
+        </select>
+    </div>
+    <input type="submit" value="Buscar" class="btn btn-primary" />
+</form>
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FirstOrDefault().Id)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FirstOrDefault().Nombre)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FirstOrDefault().NumHabitacion)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FirstOrDefault().Jacuzzi)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FirstOrDefault().CantidadMaxPersonas)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FirstOrDefault().Descripcion)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FirstOrDefault().HabilitadaReservas)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FirstOrDefault().Tipo.Nombre)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FirstOrDefault().Foto)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+        @if (Model != null)
+        {
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descripcion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TipoId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Jacuzzi)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HabilitadaReservas)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumHabitacion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CantidadMaxPersonas)
+                    </td>
+                    <td>
+                        <dt class="col-sm-2">
+                            Foto
+                        </dt>
+                        <dd class="col-sm-10">
+                            <img class="img-thumbnail" src="~/img/fotos/@Html.DisplayFor(modelItem => item.Foto)" />
+                        </dd>
+                    </td>
+                    <td>
+                        @Html.ActionLink("Mantenimientos", "ListarTodos","Mantenimiento", new { id = item.Id }) |
+                        @Html.ActionLink("Agregar Mantenimiento", "Create","Mantenimiento", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+       
+}
+    </tbody>
+</table>
+    

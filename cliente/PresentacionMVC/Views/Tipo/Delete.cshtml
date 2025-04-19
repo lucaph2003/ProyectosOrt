@@ -1,0 +1,52 @@
+﻿@model PresentacionMVC.Models.TipoModel
+
+@{
+    ViewData["Title"] = "Borrar Tipo";
+}
+
+<h1>Borrar Tipo</h1>
+<br />
+
+<h4>Seguro que desea Eliminar el Tipo?</h4>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CostoPorHuesped)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CostoPorHuesped)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" name="id" value="@Model.Id" />
+        <input type="submit" value="Borrar" class="btn btn-danger" /> |
+        <a asp-action="ListarTodos">Volver a la Lista</a>
+    </form>
+
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @ViewBag.Error
+        </div>
+    }
+</div>
